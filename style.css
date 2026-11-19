@@ -1600,3 +1600,54 @@ html, body {
     padding: 6px 10px !important;
   }
 }
+/* फ़ोन के लिए टाइटल और सारे कैटेगरी बटन साफ दिखाने का फिक्स */
+@media (max-width: 640px) {
+  /* KRONOLUXE पूरा दिखे, 'E' न कटे */
+  .logo-box h1,
+  header h1,
+  h1 {
+    font-size: clamp(1.15rem, 6.2vw, 1.8rem) !important;
+    letter-spacing: 0.04em !important;
+    word-spacing: normal !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    text-align: center !important;
+    padding: 0 8px !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+  }
+
+  /* सारे बटन सामने दिखें, छिपें या कटें नहीं */
+  nav.cats,
+  .cats,
+  .tabs,
+  .category-tabs,
+  .nav-tabs,
+  .filter-bar {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 6px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: visible !important;
+    padding: 8px 6px !important;
+    box-sizing: border-box !important;
+  }
+
+  nav.cats button,
+  .cats button,
+  .cats a,
+  .tabs button,
+  .category-tabs button,
+  .nav-tabs a,
+  .filter-bar button {
+    font-size: 10px !important;
+    letter-spacing: 0.03em !important;
+    padding: 6px 8px !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+    flex: 0 1 auto !important;
+  }
+}
