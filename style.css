@@ -1541,3 +1541,62 @@ button[onclick*="Close"],
   color: #070403 !important;
   border: 1px solid #ffefe6 !important;
 }
+/* स्क्रीन से बाहर कुछ न निकले */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* लैपटॉप / डेस्कटॉप: 1 लाइन में 3 डब्बे */
+.products, .product-grid, .grid, .cards {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 28px !important;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.product-card, .card, .box {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+
+/* टैबलेट: 1 लाइन में 2 डब्बे */
+@media (max-width: 1024px) {
+  .products, .product-grid, .grid, .cards {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+    padding: 16px;
+  }
+}
+
+/* फ़ोन: 1 लाइन में 1 बड़ा डब्बा + टाइटल और टैब फिक्स */
+@media (max-width: 640px) {
+  .products, .product-grid, .grid, .cards {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    padding: 14px;
+  }
+
+  h1, .brand-title, .hero-title {
+    font-size: clamp(1.5rem, 7.5vw, 2.2rem) !important;
+    letter-spacing: 0.1em !important;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .tabs, .category-tabs, .nav-tabs, .filter-bar {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center;
+    gap: 8px !important;
+  }
+
+  .tabs button, .category-tabs button, .nav-tabs a, .filter-bar button {
+    font-size: 11px !important;
+    padding: 6px 10px !important;
+  }
+}
