@@ -1,0 +1,1543 @@
+:root {
+  --bg-black: #050505;
+  --bg-card: #0c0c0c;
+  --gold: #c5a059;
+  --gold-light: #e6c888;
+  --border-subtle: rgba(197, 160, 89, 0.22);
+  --text-main: #f4f4f4;
+  --text-muted: #7a7a7a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+input, textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+body {
+  background-color: var(--bg-black);
+  color: var(--text-main);
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+  padding-bottom: 90px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 1. SILENT LUXURY PRELOADER */
+#welcome {
+  position: fixed;
+  inset: 0;
+  background: #030303;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+#welcome.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+#welcome img {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--gold);
+  margin-bottom: 22px;
+}
+#welcome h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  letter-spacing: 10px;
+  color: var(--gold-light);
+  font-weight: 500;
+}
+#welcome p {
+  font-size: 9px;
+  letter-spacing: 5px;
+  color: var(--text-muted);
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+/* 2. TOP REGION SELECTOR (SHARP LUXURY) */
+#topRegionBtn {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  z-index: 9000;
+  background: rgba(8, 8, 8, 0.9);
+  color: var(--gold-light);
+  border: 1px solid var(--border-subtle);
+  padding: 8px 16px;
+  border-radius: 2px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  text-transform: uppercase;
+  transition: border-color 0.3s ease;
+}
+#topRegionBtn:hover {
+  border-color: var(--gold);
+}
+
+/* 3. CURRENCY MODAL */
+.country-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(12px);
+  z-index: 9998;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.country-box {
+  background: #0d0d0d;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  padding: 28px 22px;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+}
+.country-sub {
+  color: var(--gold);
+  letter-spacing: 3px;
+  font-size: 9px;
+  margin-bottom: 6px;
+}
+.country-title {
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+}
+.country-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.country-list button {
+  background: #141414;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px 16px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+.country-list button:hover {
+  border-color: var(--gold);
+}
+.gold-text {
+  color: var(--gold-light);
+  font-weight: 600;
+}
+.country-close {
+  margin-top: 18px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 10px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+/* 4. MAIN CONTAINER & HEADER */
+.app {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.logo-box {
+  text-align: center;
+  padding: 44px 0 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.logo-box img {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--gold);
+  box-shadow: 0 0 25px rgba(197, 160, 89, 0.15);
+}
+.logo-box h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 26px;
+  letter-spacing: 11px;
+  margin-top: 16px;
+  color: #ffffff;
+  font-weight: 500;
+}
+.logo-box p {
+  color: var(--gold);
+  font-size: 9px;
+  margin-top: 8px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+/* 5. MINIMAL SEARCH BAR */
+.search {
+  max-width: 460px;
+  margin: 26px auto;
+  background: transparent;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 10px 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.search-icon {
+  color: var(--gold-light);
+  font-size: 13px;
+}
+.search input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  width: 100%;
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.search input::placeholder {
+  color: #555;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+/* 6. CATEGORY TABS */
+.cats {
+  display: flex;
+  gap: 24px;
+  padding: 8px 4px 32px;
+  overflow-x: auto;
+  justify-content: flex-start;
+}
+.cats::-webkit-scrollbar {
+  display: none;
+}
+.cats button {
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid transparent;
+  color: var(--text-muted);
+  padding: 8px 4px;
+  white-space: nowrap;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.cats button.active {
+  color: var(--gold-light);
+  border-bottom-color: var(--gold);
+}
+
+/* 7. PRODUCT GRID & LUXURY CARDS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.status-msg {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #777;
+  padding: 40px 0;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+  text-align: center;
+  padding: 14px 12px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.4s ease, transform 0.4s ease;
+}
+.card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+.card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #070707;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.card h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  margin-top: 16px;
+  color: #eaeaea;
+  letter-spacing: 1.5px;
+  line-height: 1.5;
+  min-height: 35px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card .price::before {
+  content: 'PRIVATE ARCHIVE';
+  display: block;
+  font-size: 8px;
+  color: var(--text-muted);
+  letter-spacing: 2.5px;
+  margin-bottom: 5px;
+}
+.card .price {
+  color: var(--gold-light);
+  font-weight: 500;
+  margin: 10px 0 16px;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+}
+.card .order {
+  background: transparent;
+  color: var(--gold-light);
+  border: 1px solid var(--gold);
+  width: 100%;
+  padding: 11px;
+  border-radius: 0;
+  font-weight: 600;
+  font-size: 9.5px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.card .order:hover {
+  background: var(--gold);
+  color: #050505;
+}
+
+/* 8. CONCIERGE MODAL */
+#productModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 9500;
+  overflow-y: auto;
+  padding: 30px 16px;
+  backdrop-filter: blur(10px);
+}
+.modal-box {
+  background: #0d0d0d;
+  max-width: 420px;
+  margin: 20px auto;
+  padding: 28px 24px;
+  border-radius: 2px;
+  text-align: center;
+  position: relative;
+  border: 1px solid var(--gold);
+}
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  color: var(--gold-light);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+#modalImage {
+  width: 100%;
+  max-height: 260px;
+  object-fit: contain;
+  margin-bottom: 18px;
+  background: #050505;
+}
+.modal-title {
+  color: var(--gold-light);
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+}
+.modal-price {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+}
+.modal-box input, .modal-box textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #050505;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  outline: none;
+}
+.modal-box input:focus, .modal-box textarea:focus {
+  border-color: var(--gold);
+}
+.btn-concierge {
+  width: 100%;
+  padding: 14px;
+  background: var(--gold);
+  color: #050505;
+  border: none;
+  border-radius: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.btn-concierge:hover {
+  opacity: 0.9;
+}
+
+/* 9. MOBILE BOTTOM BAR */
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(8, 8, 8, 0.96);
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: center;
+  gap: 45px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 100;
+}
+.nav button {
+  background: none;
+  border: none;
+  color: #777;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.nav button.active {
+  color: var(--gold-light);
+}
+.nav button i {
+  font-size: 14px;
+}
+
+/* 10. FOOTER */
+.luxury-footer {
+  background: #080808;
+  color: #aaa;
+  padding: 48px 20px;
+  text-align: center;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: 60px;
+}
+.luxury-footer h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--gold-light);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+.luxury-footer p {
+  font-size: 11.5px;
+  line-height: 1.8;
+  max-width: 680px;
+  margin: 0 auto 14px;
+  color: #888;
+}
+.luxury-footer .copyright {
+  margin-top: 22px;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  color: #555;
+}
+
+/* 11. DESKTOP & LAPTOP ADAPTATION (Hides Mobile Nav on Laptop!) */
+@media (min-width: 768px) {
+  body {
+    padding-bottom: 0;
+  }
+  .nav {
+    display: none !important;
+  }
+  .app {
+    padding: 0 48px;
+  }
+  .logo-box {
+    padding: 56px 0 32px;
+  }
+  .logo-box img {
+    width: 105px;
+    height: 105px;
+  }
+  .logo-box h1 {
+    font-size: 34px;
+    letter-spacing: 16px;
+  }
+  .cats {
+    justify-content: center;
+    gap: 42px;
+    padding-bottom: 44px;
+  }
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .card {
+    padding: 20px 18px 24px;
+  }
+  .card h3 {
+    font-size: 13px;
+    min-height: 40px;
+  }
+  .card .price {
+    font-size: 16px;
+  }
+}
+/* 12. ROLEX-GRADE SILENT PULSE, CARD REVEAL & DEEP GOLD PRICE */
+@keyframes luxuryPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(197, 160, 89, 0.15); }
+  50% { transform: scale(1.04); box-shadow: 0 0 38px rgba(197, 160, 89, 0.45); }
+}
+
+#welcome img {
+  animation: luxuryPulse 2.4s infinite ease-in-out;
+}
+
+@keyframes cardReveal {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  animation: cardReveal 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.card .price::before {
+  content: 'PRIVATE ARCHIVE VALUATION';
+  display: block;
+  font-size: 7.5px;
+  color: #6e6e6e;
+  letter-spacing: 3px;
+  margin-bottom: 6px;
+}
+
+.card .price {
+  font-family: 'Cinzel', serif;
+  color: #ebd197;
+  font-weight: 600;
+  margin: 12px 0 18px;
+  font-size: 15.5px;
+  letter-spacing: 2.5px;
+}
+.craft-pillars div i {
+  color: var(--gold);
+  font-size: 12px;
+  content: "•";
+}
+/* LUXURY MODAL SPACING & FONT REFINEMENT */
+.specs-copy {
+  font-size: 10.5px;
+  line-height: 1.8;
+  color: #9e9e9e;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.craft-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  border-top: 1px solid rgba(197, 160, 89, 0.22);
+  border-bottom: 1px solid rgba(197, 160, 89, 0.22);
+  padding: 16px 4px;
+  margin-bottom: 24px;
+}
+
+.craft-pillars div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: #b5b5b5;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.craft-pillars i {
+  color: var(--gold);
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+/* KRONOLUXE 101% PROFESSIONAL GALLERY & CARD STYLING */
+.card-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #050505;
+  cursor: pointer;
+}
+.card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card:hover .card-img-wrap img {
+  transform: scale(1.05);
+}
+.angle-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(5, 5, 5, 0.88);
+  color: var(--gold-light);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  padding: 3px 8px;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.gallery-stage {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 320px;
+  background: #050505;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+#modalImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.25s ease, transform 0.35s ease;
+}
+.thumb-strip {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.thumb-strip img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  background: #050505;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+  opacity: 0.55;
+  transition: all 0.25s ease;
+}
+.thumb-strip img.active, .thumb-strip img:hover {
+  opacity: 1;
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+/* ROLEX & GUCCI GRADE LUXURY MICRO-INTERACTIONS (No Cheap Shaking) */
+
+/* 1. Card Par Arrow Aane Par Smooth Elevation & Gold Glow */
+.card {
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.45s ease, 
+              box-shadow 0.55s ease !important;
+}
+
+.card:hover {
+  transform: translateY(-6px) !important;
+  border-color: var(--gold) !important;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9), 0 0 22px rgba(197, 160, 89, 0.14) !important;
+}
+
+/* 2. Category Tabs Par Arrow Aane Par Expanding Gold Line */
+.cats button {
+  position: relative;
+  transition: color 0.35s ease !important;
+}
+
+.cats button:hover {
+  color: var(--gold-light) !important;
+}
+
+/* 3. Buttons Par Arrow Aane Par Royal Press & Lift Feel */
+.card .order, .btn-concierge, #topRegionBtn {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.35s ease, 
+              color 0.35s ease, 
+              box-shadow 0.35s ease !important;
+}
+
+.card .order:hover, .btn-concierge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(197, 160, 89, 0.28);
+}
+
+.card .order:active, .btn-concierge:active {
+  transform: translateY(0px);
+}
+/* KRONOLUXE FULL-SCREEN ATELIER VIEW STYLING */
+.atelier-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #050505;
+  z-index: 9999;
+  overflow-y: auto;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+.atelier-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+.atelier-close {
+  background: transparent;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  color: var(--gold-light);
+  padding: 10px 20px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+}
+.atelier-close:hover {
+  background: var(--gold);
+  color: #050505;
+}
+.atelier-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: start;
+}
+@media (max-width: 768px) {
+  .atelier-grid { grid-template-columns: 1fr; gap: 30px; }
+}
+.atelier-gallery-col {
+  background: #0a0a0a;
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  padding: 20px;
+}
+.gallery-stage {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #050505;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+#modalImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+.thumb-strip {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+.thumb-strip img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+.thumb-strip img.active, .thumb-strip img:hover {
+  opacity: 1;
+  border-color: var(--gold);
+}
+.atelier-info-col {
+  color: #fff;
+}
+.edition-tag {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+}
+.atelier-info-col h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+.atelier-price {
+  font-size: 22px;
+  color: var(--gold-light);
+  font-family: serif;
+  margin-bottom: 20px;
+}
+.atelier-specs {
+  font-size: 14px;
+  color: #aaa;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+.atelier-features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: #d4af37;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 15px 0;
+}
+.btn-concierge {
+  width: 100%;
+  background: var(--gold);
+  color: #050505;
+  border: none;
+  padding: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.btn-concierge:hover {
+  background: var(--gold-light);
+}
+.checkout-box {
+  background: #0c0c0c;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  padding: 20px;
+}
+.checkout-box h3 {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 15px;
+}
+.checkout-box input, .checkout-box textarea {
+  width: 100%;
+  background: #050505;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+.checkout-actions {
+  display: flex;
+  gap: 10px;
+}
+.btn-back {
+  background: transparent;
+  border: 1px solid #555;
+  color: #fff;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+.btn-submit {
+  flex: 1;
+  background: var(--gold);
+  color: #050505;
+  border: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+/* =========================================================
+   DIRECTOR FINAL OVERRIDE: TRUE ROLEX/GUCCI FULL-BLEED
+   ========================================================= */
+
+.angle-badge {
+  display: none !important;
+}
+
+/* 1. बाहर के होमपेज कार्ड्स: पूरा फ्रेम भरा हुआ और क्लीन */
+.card-img-wrap {
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  height: auto !important;
+  padding: 0 !important; /* फालतू अंदरूनी बॉर्डर खत्म */
+  background: #0d0d0d !important;
+  border: 1px solid rgba(197, 160, 89, 0.18) !important;
+  overflow: hidden !important;
+  display: block !important;
+  position: relative !important;
+}
+
+.card-img-wrap img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover !important; /* पूरे कार्ड के डब्बे को 100% भरेगा */
+  object-position: center center !important;
+  transform: scale(1.0) !important;
+  transition: transform 0.5s ease !important;
+  display: block !important;
+}
+
+.card-img-wrap:hover img {
+  transform: scale(1.06) !important;
+}
+
+/* 2. अंदर का बड़ा पेज (Atelier): डबल डब्बा खत्म, 100% बड़ी फोटो */
+.atelier-gallery-col {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.gallery-stage {
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  height: auto !important;
+  max-height: none !important;
+  padding: 0 !important; /* जीरो पैडिंग ताकि फोटो पूरे डब्बे में फैले */
+  margin: 0 0 16px 0 !important;
+  background: #0d0d0d !important;
+  border: 1px solid rgba(197, 160, 89, 0.35) !important;
+  overflow: hidden !important;
+  display: block !important;
+  position: relative !important;
+}
+
+.gallery-stage img,
+#modalImage {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  object-fit: cover !important; /* डब्बे के कोने-कोने तक पूरी बड़ी फोटो */
+  object-position: center center !important;
+  transform: none !important;
+  display: block !important;
+}
+
+/* 3. नीचे के 4 थंबनेल: एकदम सेंटर और शार्प */
+.thumb-strip {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  padding: 4px 0 !important;
+}
+
+.thumb-strip img {
+  width: 84px !important;
+  height: 84px !important;
+  object-fit: cover !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  opacity: 0.5;
+  transition: all 0.25s ease !important;
+}
+
+.thumb-strip img.active,
+.thumb-strip img:hover {
+  opacity: 1 !important;
+  border-color: #c5a059 !important;
+}
+
+.atelier-features {
+  gap: 14px !important;
+  padding: 20px 0 !important;
+  letter-spacing: 2px !important;
+}
+/* =========================================================
+   ROLEX / GUCCI ULTRA-LUXURY FOOTER STYLING
+   ========================================================= */
+.kronoluxe-footer {
+  background: #040404;
+  color: #a8a8a8;
+  padding: 80px 6% 35px;
+  margin-top: 90px;
+  font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+  border-top: 1px solid rgba(197, 160, 89, 0.25);
+}
+
+.footer-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1.2fr 1.2fr;
+  gap: 50px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-crown-icon {
+  color: #c5a059;
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.footer-logo {
+  color: #ffffff;
+  font-size: 26px;
+  letter-spacing: 6px;
+  margin: 0 0 8px 0;
+  font-weight: 500;
+}
+
+.footer-tagline {
+  color: #c5a059;
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-bottom: 18px;
+  font-family: sans-serif;
+}
+
+.footer-desc {
+  font-family: sans-serif;
+  font-size: 13px;
+  line-height: 1.8;
+  color: #777777;
+  max-width: 340px;
+}
+
+.footer-links-col h4 {
+  color: #c5a059;
+  font-size: 12px;
+  letter-spacing: 3px;
+  margin-bottom: 24px;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+.footer-links-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links-col ul li {
+  margin-bottom: 14px;
+}
+
+.footer-links-col ul li a {
+  color: #999999;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 12.5px;
+  letter-spacing: 1px;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.footer-links-col ul li a:hover {
+  color: #c5a059;
+  padding-left: 5px;
+}
+
+.concierge-item {
+  font-family: sans-serif;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: #999999;
+  margin-bottom: 12px;
+}
+
+.footer-vip-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 12px 20px;
+  border: 1px solid #c5a059;
+  color: #c5a059;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.footer-vip-btn:hover {
+  background: #c5a059;
+  color: #050505;
+}
+
+.footer-bottom-bar {
+  max-width: 1320px;
+  margin: 30px auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #555555;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.footer-seal {
+  color: #c5a059;
+}
+
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   DIRECTOR FIX: GRAND ROYAL LOGO SIZE & REMOVE DOUBLE FOOTER
+   ========================================================= */
+
+/* 1. वेलकम स्क्रीन और हेडर के लोगो (logo.jpg) को बड़ा और शाही बनाना */
+img[src*="logo"],
+#splash img,
+.splash-logo,
+.welcome-logo,
+.loader-logo,
+header img,
+.brand-logo img,
+.hero-logo,
+.logo-circle {
+  width: 145px !important;
+  height: 145px !important;
+  max-width: 145px !important;
+  max-height: 145px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 0 25px rgba(197, 160, 89, 0.4)) !important;
+  margin-bottom: 16px !important;
+}
+
+/* 2. ऊपर के KRONOLUXE नाम को दमदार बनाना */
+header h1,
+.brand-title {
+  font-size: 38px !important;
+  letter-spacing: 12px !important;
+}
+
+/* 3. पुराने छोटे वाले डबल फुटर (CLIENT ASSURANCE) को गायब करना */
+footer:not(.kronoluxe-footer),
+.assurance-section,
+.client-assurance,
+.old-footer {
+  display: none !important;
+}
+/* =========================================================
+   DIRECTOR UPGRADE: ROLEX / GUCCI BOUTIQUE DOSSIER PANEL
+   ========================================================= */
+
+/* दाएं हिस्से को फोटो के बराबर सेंटर और बैलेंस करना */
+.atelier-info-col,
+.modal-info,
+.atelier-details {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding-left: 20px !important;
+}
+
+/* घड़ी के नाम को और शाही बनाना */
+#modalTitle {
+  font-size: 30px !important;
+  line-height: 1.3 !important;
+  letter-spacing: 2.5px !important;
+  margin-bottom: 14px !important;
+  color: #ffffff !important;
+  text-transform: uppercase !important;
+}
+
+/* कीमत (Price) को लक्ज़री गोल्डन बार जैसा दिखाना */
+#modalPrice {
+  font-size: 24px !important;
+  color: #c5a059 !important;
+  letter-spacing: 2px !important;
+  font-weight: 500 !important;
+  padding-bottom: 18px !important;
+  margin-bottom: 18px !important;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.22) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+}
+
+#modalPrice::after {
+  content: "ARCHIVE VALUATION • INSURED TRANSIT";
+  font-size: 9.5px !important;
+  letter-spacing: 2px !important;
+  color: #888888 !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  padding: 5px 10px !important;
+  font-family: sans-serif !important;
+}
+
+/* तीनों फीचर्स को पिल-बॉक्स (Luxury Badges) बनाना */
+.atelier-features {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 10px !important;
+  padding: 16px 0 !important;
+  margin: 10px 0 20px 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.atelier-features div,
+.atelier-features li,
+.atelier-features span {
+  background: rgba(197, 160, 89, 0.06) !important;
+  border: 1px solid rgba(197, 160, 89, 0.22) !important;
+  padding: 10px 8px !important;
+  text-align: center !important;
+  font-size: 9.5px !important;
+  letter-spacing: 1.5px !important;
+  color: #d8c398 !important;
+}
+
+/* PROCEED TO PRIVATE CONCIERGE बटन को 3D गोल्ड बनाना */
+#conciergeBtn,
+.concierge-btn,
+button[onclick*="concierge"],
+.atelier-info-col button {
+  background: linear-gradient(135deg, #d4b26f 0%, #b38b40 100%) !important;
+  color: #050505 !important;
+  font-weight: 700 !important;
+  letter-spacing: 3px !important;
+  padding: 18px 28px !important;
+  border: 1px solid #e5c888 !important;
+  box-shadow: 0 10px 30px rgba(197, 160, 89, 0.22) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+#conciergeBtn:hover,
+.concierge-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 36px rgba(197, 160, 89, 0.38) !important;
+}
+
+/* Rolex स्टाइल स्पेसिफिकेशन टेबल और लाइव स्टेटस */
+.krono-spec-dossier {
+  margin-top: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: #070707;
+  padding: 16px 20px;
+}
+
+.krono-spec-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 24px;
+}
+
+.krono-spec-item span {
+  display: block;
+  font-family: sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #666666;
+  margin-bottom: 4px;
+}
+
+.krono-spec-item strong {
+  font-family: sans-serif;
+  font-size: 11.5px;
+  letter-spacing: 1.5px;
+  color: #e0e0e0;
+  font-weight: 500;
+}
+
+.krono-vault-status {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.8px;
+  color: #c5a059;
+}
+
+.krono-pulse-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: #4cd964;
+  border-radius: 50%;
+  margin-right: 8px;
+  box-shadow: 0 0 8px #4cd964;
+}
+/* =========================================================
+   DIRECTOR 101% FINAL POLISH: ZERO SCROLL & PERFECT ALIGNMENT
+   ========================================================= */
+
+/* 1. बड़ी फोटो की ऊंचाई को स्क्रीन के हिसाब से सेट करना ताकि नीचे के 4 थंबनेल कभी न कटें */
+.gallery-stage {
+  max-height: 430px !important;
+  margin-bottom: 12px !important;
+}
+
+.thumb-strip img {
+  width: 68px !important;
+  height: 68px !important;
+}
+
+/* 2. तीनों फीचर बैज को टूटने से बचाना और एक लाइन में शार्प दिखाना */
+.atelier-features {
+  gap: 8px !important;
+  padding: 12px 0 !important;
+  margin: 8px 0 16px 0 !important;
+}
+
+.atelier-features div,
+.atelier-features li,
+.atelier-features span {
+  padding: 9px 4px !important;
+  font-size: 8.5px !important;
+  letter-spacing: 1.1px !important;
+  white-space: nowrap !important; /* शब्दों को बीच से टूटने नहीं देगा */
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* 3. CLOSE ARCHIVE बटन को शाही गोल्डन टच देना */
+button[onclick*="close"],
+.close-archive,
+.atelier-close {
+  border: 1px solid rgba(197, 160, 89, 0.4) !important;
+  color: #c5a059 !important;
+  background: rgba(8, 8, 8, 0.9) !important;
+  padding: 9px 18px !important;
+  font-size: 10px !important;
+  letter-spacing: 2.5px !important;
+  margin-bottom: 14px !important;
+  transition: all 0.3s ease !important;
+}
+
+button[onclick*="close"]:hover,
+.close-archive:hover {
+  background: #c5a059 !important;
+  color: #050505 !important;
+}
+/* =========================================================
+   DIRECTOR FORCE-OVERRIDE: TRUE 18K ROSE-GOLD & LOGO FIX
+   ========================================================= */
+
+:root {
+  --gold: #df9e7b !important;
+  --gold-light: #f9dccb !important;
+  --gold-dark: #9c5a3c !important;
+}
+
+/* 1. गोल लोगो के अंदर दिख रहे चौकोर डब्बे के कोनों को गायब करना */
+img[src*="logo"],
+#splash img,
+header img,
+.logo-circle img {
+  border-radius: 50% !important;
+  width: 145px !important;
+  height: 145px !important;
+  object-fit: cover !important;
+  border: 1.5px solid rgba(223, 158, 123, 0.55) !important;
+  box-shadow: 0 0 32px rgba(223, 158, 123, 0.35), inset 0 0 15px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* 2. वेलकम स्क्रीन और हेडर के KRONOLUXE नाम और स्लोगन को Cinzel फॉन्ट व चमक देना */
+#splash h1,
+#splash h2,
+header h1,
+.brand-title {
+  font-family: 'Cinzel', Georgia, serif !important;
+  font-size: 42px !important;
+  letter-spacing: 14px !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 18px rgba(223, 158, 123, 0.28) !important;
+}
+
+#splash p,
+#splash span,
+header p,
+.subtitle,
+.tagline {
+  font-family: 'Cinzel', Georgia, serif !important;
+  font-size: 12px !important;
+  letter-spacing: 5px !important;
+  color: #e8b598 !important;
+  opacity: 0.95 !important;
+}
+
+/* 3. अंदर के प्रोडक्ट टाइटल और प्राइस को रॉयल बनाना */
+#modalTitle,
+.modal-info h2,
+.atelier-info-col h2 {
+  font-family: 'Cinzel', Georgia, serif !important;
+  font-size: 30px !important;
+  letter-spacing: 2.5px !important;
+  color: #ffffff !important;
+}
+
+#modalPrice {
+  font-family: 'Cinzel', Georgia, serif !important;
+  font-size: 26px !important;
+  color: #ebb394 !important;
+  font-weight: 600 !important;
+}
+
+/* 4. PROCEED TO PRIVATE CONCIERGE बटन को 3D चमकदार मेटैलिक रोज़-गोल्ड बनाना */
+#conciergeBtn,
+.concierge-btn,
+.atelier-info-col button,
+.modal-info button,
+a.concierge-btn {
+  font-family: 'Cinzel', sans-serif !important;
+  background: linear-gradient(135deg, #f7d6c4 0%, #d89672 45%, #8f4e30 100%) !important;
+  color: #070403 !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  letter-spacing: 3.5px !important;
+  border: 1px solid #ffefe6 !important;
+  box-shadow: 0 8px 28px rgba(216, 150, 114, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+  text-transform: uppercase !important;
+}
+
+/* 5. नीचे के सिलेक्टेड थंबनेल और फ्रेम को शार्प रोज़-गोल्ड बॉर्डर देना */
+.thumb-strip img.active,
+.thumb-strip img:first-child {
+  border: 2px solid #e8b598 !important;
+  box-shadow: 0 0 12px rgba(232, 181, 152, 0.4) !important;
+}
+
+.gallery-stage,
+.product-card,
+.card-img-wrap {
+  border-color: rgba(232, 181, 152, 0.32) !important;
+}
+/* =========================================================
+   FINAL FIX: CLOSE ARCHIVE BUTTON & FULL FOOTER ROSE-GOLD
+   ========================================================= */
+
+/* 1. परफ्यूम/प्रोडक्ट के ऊपर वाले × CLOSE ARCHIVE बटन को 3D Metallic Rose-Gold बनाना */
+button[onclick*="close"],
+button[onclick*="Close"],
+#closeModal,
+#closeArchive,
+.close-btn,
+.close-archive,
+.atelier-close,
+.modal-close {
+  background: linear-gradient(135deg, #f7d6c4 0%, #d89672 45%, #8f4e30 100%) !important;
+  color: #070403 !important;
+  border: 1px solid #ffefe6 !important;
+  font-family: 'Cinzel', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 2.5px !important;
+  box-shadow: 0 4px 18px rgba(216, 150, 114, 0.35) !important;
+}
+
+/* 2. पूरे FOOTER के हर एक पीले हिस्से को 100% Metallic Rose-Gold में बदलना */
+.kronoluxe-footer {
+  border-top: 1px solid rgba(232, 181, 152, 0.38) !important;
+}
+
+.footer-crown-icon,
+.footer-tagline,
+.footer-links-col h4,
+.footer-seal,
+.footer-links-col ul li a:hover {
+  color: #e8b598 !important; /* असली चमकदार Rose-Gold रंग */
+}
+
+/* फुटर के REQUEST PRIVATE APPOINTMENT बटन को Rose-Gold बनाना */
+.footer-vip-btn {
+  border: 1px solid #e8b598 !important;
+  color: #e8b598 !important;
+  background: rgba(232, 181, 152, 0.05) !important;
+}
+
+.footer-vip-btn:hover {
+  background: linear-gradient(135deg, #f7d6c4 0%, #d89672 50%, #8f4e30 100%) !important;
+  color: #050505 !important;
+  border-color: #ffefe6 !important;
+}
+
+/* 3. अगर × CLOSE ARCHIVE बटन पर कोई अजीब नाम की क्लास है, तो भी उसे पकड़ने का जुगाड़ */
+#productModal button:first-of-type,
+.modal-content > button:first-of-type {
+  background: linear-gradient(135deg, #f7d6c4 0%, #d89672 45%, #8f4e30 100%) !important;
+  color: #070403 !important;
+  border: 1px solid #ffefe6 !important;
+}

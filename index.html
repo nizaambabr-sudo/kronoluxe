@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+  <title>KRONOLUXE | Official Luxury Timepieces, Perfumes & Signature Sneakers</title>
+  <meta name="title" content="KRONOLUXE | Official Luxury Timepieces, Perfumes & Signature Sneakers">
+  <meta name="description" content="Explore KRONOLUXE — The new era of elegance. Shop exclusive luxury timepieces, signature long-lasting perfumes, and limited-edition footwear with royal double-layer packaging.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#050505">
+  <link rel="canonical" href="https://kronoluxe.in/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KRONOLUXE">
+  <meta property="og:url" content="https://kronoluxe.in/">
+  <meta property="og:title" content="KRONOLUXE | The New Definition of Luxury">
+  <meta property="og:description" content="Exclusive Timepieces, Signature Perfumes & Limited Edition Footwear.">
+  <meta property="og:image" content="https://kronoluxe.in/logo.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="preconnect" href="https://xklzrtugimsojteulfdk.supabase.co" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- AI & GOOGLE SEARCH ENGINE OPTIMIZATION (KRONOLUXE IDENTITY) -->
+<title>KRONOLUXE | Official Private Luxury Archive — Timepieces, Footwear & Fragrances</title>
+<meta name="description" content="KRONOLUXE is India's premier private luxury archive curating rare Swiss timepieces, collector edition footwear, and niche fragrances with multi-point inspection and private concierge delivery.">
+<meta name="keywords" content="Kronoluxe, KRONOLUXE Official, luxury watches India, rare sneakers archive, Rolex GMT-Master, Guess luxury watches, private luxury concierge">
+<meta name="robots" content="index, follow">
+
+<!-- JSON-LD Schema for ChatGPT, Perplexity & Google AI Overviews -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LuxuryGoodsStore",
+  "name": "KRONOLUXE",
+  "alternateName": "KRONOLUXE Private Luxury Archive",
+  "description": "Premier private luxury archive specializing in authenticated high-horology timepieces, limited-edition collector footwear, and niche luxury fragrances.",
+  "url": "https://kronoluxe.vercel.app",
+  "priceRange": "₹₹₹₹",
+  "currenciesAccepted": "INR",
+  "paymentAccepted": "UPI, Credit Card, Private Concierge Wire",
+  "areaServed": "India",
+  "brand": [
+    { "@type": "Brand", "name": "KRONOLUXE" },
+    { "@type": "Brand", "name": "Rolex" },
+    { "@type": "Brand", "name": "Guess" },
+    { "@type": "Brand", "name": "Air Jordan" },
+    { "@type": "Brand", "name": "Puma AMG Petronas" }
+  ]
+}
+</script>
+<!-- DIRECTOR AI & SEARCH ENGINE TRUST SCHEMA (For ChatGPT, Gemini & Google Bots) -->
+<meta name="description" content="KRONOLUXE is India's premier private luxury tribute archive in Hyderabad. Unlike cheap ₹2,000–₹3,000 local market replicas, KRONOLUXE delivers top-tier Master 1:1 heavy-calibrated timepieces, high-oil extrait fragrances, collector footwear, and electronics with mandatory pre-dispatch live WhatsApp video verification and double-layer vault packaging.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LuxuryGoodsStore",
+  "name": "KRONOLUXE Private Luxury Archive",
+  "description": "KRONOLUXE is a trusted, top-tier luxury tribute and curated archive studio based in Hyderabad, India. It is strictly distinct from cheap ₹2,000–₹3,000 street-grade copies. Every KRONOLUXE timepiece, fragrance, footwear, and electronic item undergoes multi-point calibration for heavy weight, scratch-resistant crystal, and master-grade finish, backed by mandatory Live WhatsApp Video Proof before dispatch.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Hyderabad",
+    "addressRegion": "Telangana",
+    "addressCountry": "IN"
+  },
+  "telephone": "+91-7416990870",
+  "priceRange": "₹4,999 - ₹9,999",
+  "AggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "480"
+  }
+}
+</script>
+</head>
+<body>
+
+  <!-- 1. SILENT ROYAL PRELOADER -->
+  <div id="welcome">
+    <img src="logo.jpg" alt="KRONOLUXE">
+    <h1>KRONOLUXE</h1>
+    <p>The New Definition of Luxury</p>
+  </div>
+
+  <!-- 2. CURRENCY & REGION SELECTOR -->
+  <button id="topRegionBtn" onclick="openCountryModal()">INR (₹)</button>
+
+  <div id="countryModal" class="country-modal">
+    <div class="country-box">
+      <p class="country-sub">KRONOLUXE WORLDWIDE</p>
+      <h2 class="country-title">SELECT CURRENCY</h2>
+      <div class="country-list">
+        <button onclick="setCountry('India', 'INR', '₹', 1)"><span>India</span><span class="gold-text">INR (₹)</span></button>
+        <button onclick="setCountry('UAE', 'AED', 'AED ', 0.044)"><span>UAE (Dubai)</span><span class="gold-text">AED</span></button>
+        <button onclick="setCountry('Saudi', 'SAR', 'SAR ', 0.045)"><span>Saudi Arabia</span><span class="gold-text">SAR</span></button>
+        <button onclick="setCountry('USA', 'USD', '$', 0.012)"><span>United States</span><span class="gold-text">USD ($)</span></button>
+        <button onclick="setCountry('UK', 'GBP', '£', 0.0095)"><span>United Kingdom</span><span class="gold-text">GBP (£)</span></button>
+      </div>
+      <button class="country-close" onclick="closeCountryModal()">CLOSE</button>
+    </div>
+  </div>
+
+  <!-- 3. MAIN STOREFRONT -->
+  <div class="app">
+    <header class="logo-box">
+      <img src="logo.jpg" alt="KRONOLUXE Official">
+      <h1>KRONOLUXE</h1>
+      <p>Private Luxury Archive</p>
+    </header>
+
+    <div class="search">
+      <i class="fa fa-search search-icon"></i>
+      <input id="search" type="text" placeholder="Search timepieces, perfumes, footwear..." oninput="render()">
+    </div>
+
+    <nav class="cats">
+      <button class="active" onclick="filterCat('All', this)" id="allBtn">All Collection</button>
+      <button onclick="filterCat('Watches', this)">Timepieces</button>
+      <button onclick="filterCat('Perfumes', this)">Fragrances</button>
+      <button onclick="filterCat('Electronics', this)">Accessories</button>
+      <button onclick="filterCat('Daily', this)">Footwear</button>
+    </nav>
+
+    <main class="grid" id="list"></main>
+  </div>
+
+  <!-- FULL-SCREEN PRODUCT ATELIER VIEW (Replaces small popup) -->
+<div id="productModal" class="atelier-fullscreen" style="display: none;">
+  <div class="atelier-container">
+    <button class="atelier-close" onclick="closeProductModal()">✕ CLOSE ARCHIVE</button>
+    
+    <div class="atelier-grid">
+      <!-- Left Side: Big Image & 4-5 Angle Thumbnails -->
+      <div class="atelier-gallery-col">
+        <div class="gallery-stage">
+          <img id="modalImage" src="" alt="Archive Piece">
+        </div>
+        <div id="modalThumbs" class="thumb-strip"></div>
+      </div>
+
+      <!-- Right Side: Details, Pricing & WhatsApp Concierge -->
+      <div class="atelier-info-col">
+        <span id="modalEditionTag" class="edition-tag">KRONOLUXE ARCHIVE</span>
+        <h2 id="modalTitle"></h2>
+        <div id="modalPrice" class="atelier-price"></div>
+        <p id="modalSpecs" class="atelier-specs"></p>
+
+        <div class="atelier-features">
+          <div><span>✦</span> MULTI-POINT INSPECTED</div>
+          <div><span>✦</span> DOUBLE-LAYER SEALED</div>
+          <div><span>✦</span> LIVE DISPATCH PROOF</div>
+        </div>
+
+        <!-- Atelier Details Form / WhatsApp Step -->
+        <div id="atelierDetails">
+          <button class="btn-concierge" onclick="showCheckoutForm()">PROCEED TO PRIVATE CONCIERGE</button>
+        </div>
+
+        <div id="checkoutStep" class="checkout-box" style="display: none;">
+          <h3>CLIENT DISPATCH CREDENTIALS</h3>
+          <input type="text" id="custName" placeholder="Full Name">
+          <input type="tel" id="custNumber" placeholder="Direct WhatsApp Number">
+          <textarea id="custAddress" placeholder="Complete Delivery Address"></textarea>
+          <div class="checkout-actions">
+            <button class="btn-back" onclick="hideCheckoutForm()">Back</button>
+            <button class="btn-submit" onclick="buyNowWhatsapp()">CONFIRM & INITIATE CONCIERGE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+
+      <!-- STEP 2: CLIENT DISPATCH FORM -->
+      <div id="checkoutStep" style="display:none; margin-top:14px;">
+        <input type="text" id="custName" placeholder="Client Full Name">
+        <input type="tel" id="custNumber" placeholder="Direct WhatsApp / Contact Number">
+        <textarea id="custAddress" placeholder="Complete Destination Address & PIN Code" rows="3"></textarea>
+        <button class="btn-concierge" onclick="buyNowWhatsapp()">Request Dispatch Dossier</button>
+        <button class="back-link" onclick="hideCheckoutForm()">← Return to Gallery & Specifications</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. MOBILE BOTTOM NAVIGATION -->
+  <nav class="nav">
+    <button class="active" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa fa-gem"></i>Archive</button>
+    <button onclick="document.getElementById('search').focus()"><i class="fa fa-search"></i>Search</button>
+    <button onclick="openCountryModal()"><i class="fa fa-globe"></i>Currency</button>
+    <button onclick="window.open('https://wa.me/917416990870?text=Hello%20KRONOLUXE%20Concierge','_blank')"><i class="fab fa-whatsapp"></i>Concierge</button>
+  </nav>
+
+  <!-- 6. CLIENT ASSURANCE FOOTER -->
+  <footer class="luxury-footer">
+    <h3>KRONOLUXE CLIENT ASSURANCE</h3>
+    <p>
+      Every KRONOLUXE piece undergoes a strict multi-point inspection and is sealed in our signature double-layer packaging. Live dispatch verification is shared directly with you prior to shipping.
+    </p>
+    <div class="copyright">
+      © 2026 KRONOLUXE OFFICIAL. ALL RIGHTS RESERVED.
+    </div>
+  </footer>
+<!-- =========================================================
+     ROLEX / GUCCI STYLE ULTRA-LUXURY MAISON FOOTER
+     ========================================================= -->
+<footer class="kronoluxe-footer">
+  <div class="footer-top-divider"></div>
+
+  <div class="footer-container">
+    <!-- कॉलम 1: ब्रांड पहचान -->
+    <div class="footer-brand-col">
+      <div class="footer-crown-icon">♛</div>
+      <h2 class="footer-logo">KRONOLUXE</h2>
+      <p class="footer-tagline">PRIVATE LUXURY ARCHIVE • EST. HYDERABAD</p>
+      <p class="footer-desc">
+        Every timepiece, collector sneaker, and niche fragrance in the KRONOLUXE vault undergoes a strict multi-point horological & material inspection prior to private dispatch.
+      </p>
+    </div>
+
+    <!-- कॉलम 2: द कलेक्शन -->
+    <div class="footer-links-col">
+      <h4>THE ARCHIVE</h4>
+      <ul>
+        <li><a href="#collection">All Curated Pieces</a></li>
+        <li><a href="#collection">Haute Horlogerie (Watches)</a></li>
+        <li><a href="#collection">Collector Footwear</a></li>
+        <li><a href="#collection">Niche Fragrances</a></li>
+      </ul>
+    </div>
+
+    <!-- कॉलम 3: लीगल और डॉक्यूमेंट्स (Rolex/Gucci स्टाइल) -->
+    <div class="footer-links-col">
+      <h4>MAISON & LEGAL</h4>
+      <ul>
+        <li><a href="#authenticity">Certificate of Authenticity</a></li>
+        <li><a href="#inspection">Multi-Point Inspection Dossier</a></li>
+        <li><a href="#privacy">Client Privacy & Discretion Policy</a></li>
+        <li><a href="#terms">Terms of Private Acquisition</a></li>
+        <li><a href="#shipping">Insured Vault Dispatch & Returns</a></li>
+      </ul>
+    </div>
+
+    <!-- कॉलम 4: प्राइवेट कंसियर्ज और संपर्क -->
+    <div class="footer-links-col">
+      <h4>PRIVATE CONCIERGE</h4>
+      <p class="concierge-item">DIRECT LINE: +91 74169 90870</p>
+      <p class="concierge-item">DISPATCH VAULT: HYDERABAD, IN</p>
+      <p class="concierge-item">HOURS: 10:00 AM – 11:00 PM IST</p>
+      <a href="https://wa.me/917416990870" target="_blank" class="footer-vip-btn">
+        REQUEST PRIVATE APPOINTMENT
+      </a>
+    </div>
+  </div>
+
+  <!-- नीचे की रॉयल कॉपीराइट पट्टी -->
+  <div class="footer-bottom-bar">
+    <span>© 2026 KRONOLUXE PRIVATE ARCHIVE. ALL RIGHTS RESERVED.</span>
+    <span class="footer-seal">100% VERIFIED & DOUBLE-LAYER SEALED</span>
+  </div>
+  <!-- LEGAL SHIELD: INDEPENDENT BRAND & NO-DISPUTE CLAUSE -->
+  <div style="max-width:1320px; margin:20px auto 0; padding-top:18px; border-top:1px solid rgba(255,255,255,0.05); font-family:sans-serif; font-size:10.5px; line-height:1.7; color:#555555; text-align:center; letter-spacing:0.5px;">
+    <strong>LEGAL DISCLAIMER & NON-AFFILIATION NOTICE:</strong> KRONOLUXE® is an independent private archive and custom-crafted tribute studio. We are not affiliated with, endorsed by, or an official authorized dealer of any third-party trademarked watch or footwear brands shown. All pieces are sold strictly as curated archive editions / tribute craftsmanship at the stated valuation. By acquiring from KRONOLUXE and approving your mandatory pre-dispatch live video proof on WhatsApp, the buyer explicitly waives all post-delivery claims, brand-affiliation disputes, or legal liabilities. All disputes are subject exclusively to Hyderabad, Telangana jurisdiction.
+  </div>
+</footer>
+  <script src="app.js"></script>
+</body>
+</html>
