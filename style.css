@@ -1651,3 +1651,131 @@ html, body {
     flex: 0 1 auto !important;
   }
 }
+/* =========================================================
+   KRONOLUXE - BAREEK / ULTRA-CLEAN LUXURY LAYOUT (ALL SCREENS)
+   ========================================================= */
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* कार्ड और डब्बों के मोटे बॉर्डर हटाकर बारीक/साफ़ लक्ज़री लुक */
+.product-card,
+.card,
+.box,
+.item-card {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 8px 4px !important;
+}
+
+/* कार्ड के अंदर इमेज के चारों तरफ़ का भारी फ़्रेम हटाना */
+.product-card img,
+.card img,
+.box img,
+.item-card img {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* टेक्स्ट और बटन बारीक / क्लीन रखना */
+.product-card h2,
+.product-card h3,
+.card h2,
+.card h3,
+.box h2,
+.box h3 {
+  font-weight: 400 !important;
+  letter-spacing: 0.08em !important;
+  margin-top: 12px !important;
+}
+
+/* 1. लैपटॉप / डेस्कटॉप (1025px और ऊपर): 1 लाइन में 3 डब्बे */
+@media (min-width: 1025px) {
+  .products,
+  .product-grid,
+  .grid,
+  .cards {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 36px 28px !important;
+    max-width: 1240px !important;
+    margin: 0 auto !important;
+    padding: 28px 24px !important;
+  }
+}
+
+/* 2. टैबलेट (641px से 1024px तक): 1 लाइन में 2 डब्बे */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .products,
+  .product-grid,
+  .grid,
+  .cards {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 28px 20px !important;
+    padding: 20px 18px !important;
+  }
+}
+
+/* 3. फ़ोन (640px और उससे छोटा): 1 लाइन में 1 बड़ा डब्बा + टाइटल व बटन साफ */
+@media (max-width: 640px) {
+  .products,
+  .product-grid,
+  .grid,
+  .cards {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    padding: 16px 14px !important;
+  }
+
+  /* KRONOLUXE का आखिरी 'E' पूरा दिखे */
+  .logo-box h1,
+  header h1,
+  h1 {
+    font-size: clamp(1.15rem, 6.2vw, 1.8rem) !important;
+    letter-spacing: 0.04em !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    padding: 0 8px !important;
+    overflow: visible !important;
+  }
+
+  /* कैटेगरी बटन एक साथ साफ़ दिखें */
+  nav.cats,
+  .cats,
+  .tabs,
+  .category-tabs,
+  .nav-tabs,
+  .filter-bar {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    padding: 8px 6px !important;
+  }
+
+  nav.cats button,
+  .cats button,
+  .cats a,
+  .tabs button,
+  .category-tabs button,
+  .nav-tabs a,
+  .filter-bar button {
+    font-size: 10px !important;
+    letter-spacing: 0.04em !important;
+    padding: 6px 8px !important;
+    border-radius: 0 !important;
+  }
+}
