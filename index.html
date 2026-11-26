@@ -288,5 +288,225 @@
   </div>
 </footer>
   <script src="app.js"></script>
+  <script>
+/* =========================================================
+   KRONOLUXE - INSTANT GRID & DEEP GALLERY PRELOAD ENGINE
+   ========================================================= */
+(function () {
+  const seenUrls = new Set();
+  const queue = [];
+  let activeDownloads = 0;
+  const MAX_CONCURRENT = 4;
+  let visibleCardCount = 0;
+
+  function normalizeUrl(raw) {
+    if (!raw || typeof raw !== "string") return "";
+    const trimmed = raw.trim();
+    if (!trimmed || trimmed.startsWith("data:") || trimmed.startsWith("blob:")) return "";
+    try {
+      return new URL(trimmed, window.location.href).href;
+    } catch (_) {
+      return "";
+    }
+  }
+
+  function pumpQueue() {
+    while (activeDownloads < MAX_CONCURRENT && queue.length > 0) {
+      const item = queue.shift();
+      if (!item || seenUrls.has(item.url)) continue;
+      seenUrls.add(item.url);
+
+      activeDownloads++;
+      const preImg = new Image();
+      preImg.decoding = "async";
+      if ("fetchPriority" in preImg) {
+        preImg.fetchPriority = item.high ? "high" : "low";
+      }
+
+      const finish = () => {
+        activeDownloads = Math.max(0, activeDownloads - 1);
+        pumpQueue();
+      };
+
+      preImg.onload = finish;
+      preImg.onerror = finish;
+      preImg.src = item.url;
+    }
+  }
+
+  function enqueueUrl(rawUrl, highPriority = false) {
+    const url = normalizeUrl(rawUrl);
+    if (!url || seenUrls.has(url)) return;
+    if (highPriority) {
+      queue.unshift({ url, high: true });
+    } else {
+      queue.push({ url, high: false });
+    }
+    pumpQueue();
+  }
+
+  function extractCandidateUrlsFromElement(el) {
+    if (!el || !el.getAttribute) return [];
+    const found = [];
+    const attrs = [
+      "data-src",
+      "data-lazy",
+      "data-lazy-src",
+      "data-original",
+      "data-image",
+      "data-images",
+      "data-gallery",
+      "data-thumbs",
+      "data-variants",
+      "data-srcset"
+    ];
+
+    for (const attr of attrs) {
+      const val = el.getAttribute(attr);
+      if (!val) continue;
+
+      // JSON array / string ho toh usmein se URL nikalna
+      if (val.trim().startsWith("[") || val.trim().startsWith("{")) {
+        const matches = val.match(/https?:\/\/[^\s"'\]}]+|\/[^\s"'\]}]+/g);
+        if (matches) found.push(...matches);
+      } else if (attr === "data-srcset") {
+        val.split(",").forEach((part) => {
+          const u = part.trim().split(/\s+/)[0];
+          if (u) found.push(u);
+        });
+      } else {
+        val.split(",").forEach((u) => {
+          if (u.trim()) found.push(u.trim());
+        });
+      }
+    }
+
+    return found;
+  }
+
+  function attachRetry(img) {
+    if (img.dataset.klRetryBound) return;
+    img.dataset.klRetryBound = "1";
+    let retries = 0;
+
+    img.addEventListener("error", function () {
+      if (retries >= 2) return;
+      retries++;
+      const current = img.getAttribute("src");
+      if (!current || current.startsWith("data:")) return;
+      setTimeout(() => {
+        const sep = current.includes("?") ? "&" : "?";
+        img.src = current + sep + "kl_r=" + retries + "_" + Date.now();
+      }, 400 * retries);
+    });
+  }
+
+  function prioritizeImg(img, isHigh) {
+    if (!img || img.tagName !== "IMG") return;
+    attachRetry(img);
+    img.decoding = "async";
+
+    // Agar data-src mein link chhupa hai toh turant src mein laana
+    const lazySrc =
+      img.getAttribute("data-src") ||
+      img.getAttribute("data-lazy-src") ||
+      img.getAttribute("data-original");
+    if (lazySrc && (!img.getAttribute("src") || img.getAttribute("src").startsWith("data:"))) {
+      img.setAttribute("src", lazySrc.trim());
+    }
+
+    if (isHigh) {
+      img.loading = "eager";
+      img.setAttribute("fetchpriority", "high");
+    } else {
+      img.loading = "eager";
+      img.setAttribute("fetchpriority", "auto");
+    }
+
+    const activeSrc = img.currentSrc || img.getAttribute("src");
+    if (activeSrc) {
+      seenUrls.add(normalizeUrl(activeSrc));
+    }
+  }
+
+  function scanDom(root = document) {
+    // 1. Saari IMG tags ko prioritize karna
+    const imgs = root.querySelectorAll("img");
+    imgs.forEach((img) => {
+      if (img.closest("#kl-loader")) return;
+      const inModalOrGallery = Boolean(
+        img.closest(
+          '[class*="modal"], [id*="modal"], [class*="popup"], [class*="drawer"], [class*="detail"], [class*="gallery"], [class*="thumb"], [class*="lightbox"]'
+        )
+      );
+      visibleCardCount++;
+      prioritizeImg(img, inModalOrGallery || visibleCardCount <= 8);
+    });
+
+    // 2. Product cards / containers ke andar chhupi gallery photos ko background mein preload karna
+    const holders = root.querySelectorAll(
+      '[data-src], [data-images], [data-gallery], [data-thumbs], [data-variants], [class*="product"], [class*="card"], [class*="item"]'
+    );
+
+    holders.forEach((holder) => {
+      const urls = extractCandidateUrlsFromElement(holder);
+      urls.forEach((u) => enqueueUrl(u, false));
+
+      // Jab user kisi card/product par hover ya touch kare, toh uski saari photos turant top priority mein
+      if (!holder.dataset.klHoverBound) {
+        holder.dataset.klHoverBound = "1";
+        const boost = () => {
+          holder.querySelectorAll("img").forEach((img) => prioritizeImg(img, true));
+          extractCandidateUrlsFromElement(holder).forEach((u) => enqueueUrl(u, true));
+        };
+        holder.addEventListener("pointerenter", boost, { passive: true });
+        holder.addEventListener("touchstart", boost, { passive: true });
+      }
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => scanDom());
+  } else {
+    scanDom();
+  }
+
+  window.addEventListener("load", () => {
+    scanDom();
+  });
+
+  // Jab data/JS se naye products ya modal/gallery render hon, turant pakadna
+  const observer = new MutationObserver((mutations) => {
+    for (const m of mutations) {
+      if (m.type === "childList") {
+        m.addedNodes.forEach((node) => {
+          if (node.nodeType === 1) {
+            if (node.tagName === "IMG") {
+              prioritizeImg(node, true);
+            } else if (node.querySelectorAll) {
+              scanDom(node);
+            }
+          }
+        });
+      } else if (m.type === "attributes" && m.target && m.target.tagName === "IMG") {
+        prioritizeImg(m.target, true);
+      }
+    }
+  });
+
+  observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["src", "data-src", "data-images", "data-gallery"]
+  });
+
+  // Zaroorat pade toh kisi bhi photo list ko haath se preload karne ka helper
+  window.klPreloadGallery = function (urlList) {
+    if (!Array.isArray(urlList)) return;
+    urlList.forEach((u) => enqueueUrl(u, true));
+  };
+})();
+</script>
 </body>
 </html>
